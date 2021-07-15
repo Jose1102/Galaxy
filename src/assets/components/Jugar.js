@@ -184,7 +184,7 @@ class Jugar extends Component {
         }
 
         function GalaxyServiceURL() {
-            return 'ws://back-proyecto.herokuapp.com/galaxyGame';
+            return 'ws:http://back-proyecto.herokuapp.com/galaxyGame';
         }
 
         class GalaxyGameChannel {
