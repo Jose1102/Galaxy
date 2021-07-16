@@ -1,7 +1,8 @@
 import React from 'react';
 import UserService from '../services/UserService';
 import '../css/App.css';
-import { Route, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 class UserComponet extends React.Component {

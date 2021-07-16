@@ -5,10 +5,8 @@ import './assets/css/App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 //Importar componentes
-import MiComponente from './assets/components/MiComponente';
 import UserComponet from './assets/components/UserComponent';
 import HeaderComponent from './assets/components/HeaderComponent';
-import FooterComponent from './assets/components/FooterComponent';
 import CreateUser from './assets/components/CreateUser';
 import LoginUser from './assets/components/LoginUser';
 import Inicio from './assets/components/Inicio';

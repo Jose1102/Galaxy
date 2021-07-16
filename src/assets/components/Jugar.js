@@ -24,6 +24,7 @@ class Jugar extends Component {
 
         }
 
+      
 
         const canvasMapFondo = document.getElementById('fondo');
         const ctx2 = canvasMapFondo.getContext('2d');
