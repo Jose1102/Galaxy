@@ -29,6 +29,10 @@ var existShootPlayer2 = false;
 var dy = 100;
 var dy2 = 500; 
 
+var temp1 = 0;
+var temp2 = 0;
+
+
 class Jugar extends Component {
     constructor(props) {
 
@@ -126,10 +130,12 @@ class Jugar extends Component {
             if(e.keyCode == 83 && sPressed==false){
                 disPlayer1= posx;
                 sPressed = true;
-                if(existShoot==false){
-
+                if(existShoot==false ){
+                    console.log('entra a player 1 send');
                     drawDisparoPlayer1(disPlayer1);
                     existShoot = true;
+                    wsreference.send(10,1,posx,1);
+                    
 
                 }         
 
@@ -139,7 +145,7 @@ class Jugar extends Component {
                 rightPressed = true;
                 posx = posx + 10;
                 console.log('posx '+ posx);
-                wsreference.send(10,1);
+                wsreference.send(10,1,posx,0);
                 drawNave();
                 
             }
@@ -150,7 +156,7 @@ class Jugar extends Component {
                 leftPressed = true;
                 posx = posx - 10;
                 console.log('posx '+ posx);
-                wsreference.send(-10,1);
+                wsreference.send(-10,1,posx,0);
                 drawNave();
                 
             }
@@ -177,10 +183,12 @@ class Jugar extends Component {
                 console.log('entra a flecha');
                 disPlayer2= posx2;
                 flechaPressed = true;
-                if(existShootPlayer2==false){
-
+                if(existShootPlayer2==false ){
+                    console.log('entra a player 2 send');
                     drawDisparoPlayer2(disPlayer2);
                     existShootPlayer2 = true;
+                    wsreference.send(10,2,posx2,1);
+                    
 
                 }         
 
@@ -189,14 +197,14 @@ class Jugar extends Component {
                 rightPressedPlayer2 = true;
                 posx2 = posx2 + 10;
                 console.log('posx2 '+ posx2);
-                wsreference.send(10,2);
+                wsreference.send(10,2,posx2,0);
                 drawNave();
             }
             else if(e.keyCode == 37 && posx2 > 0) {
                 leftPressedPlayer2 = true;
                 posx2 = posx2 - 10;
                 console.log('posx2 '+ posx2);
-                wsreference.send(-10,2);
+                wsreference.send(-10,2,posx2,0);
                 drawNave();
                 
             }
@@ -275,6 +283,7 @@ class Jugar extends Component {
                 ctx3.clearRect(0, 0, 900, 540);
                 dy = 20;
                 existShoot = false;
+                temp1 =0;
 
             }
             
@@ -305,7 +314,7 @@ class Jugar extends Component {
                 ctx3.clearRect(0, 0, 900, 540);
                 dy2 = 500;
                 existShootPlayer2 = false;
-                
+                temp2 =0;
 
             }
             
@@ -342,8 +351,8 @@ class Jugar extends Component {
             onError(evt) {
                 console.error("In onError", evt);
             }
-            send(x,y) {
-                let msg = '{ "x": ' + (x) + ', "y": ' + (y) + "}";
+            send(x,y,posx,isShoot) {
+                let msg = '{ "x": ' + (x) + ', "y": ' + (y) +', "posx": ' + (posx) + ', "isShoot": ' + (isShoot) + "}";
                 //let msg = '{ "y": ' + (press) + "}";
                 console.log("sending: ", msg);
                 this.wsocket.send(msg);
@@ -356,10 +365,22 @@ class Jugar extends Component {
         var obj = JSON.parse(msg);
         console.log("On func call back ", msg);
         if(obj.y==1){
+            if(obj.isShoot == 1 && temp1==1){
+                console.log('entra a real time 1');
+                drawDisparoPlayer1(obj.posx);
+
+            }
+            temp1 = 1;
             posx += obj.x;
 
         }
         else if(obj.y==2){
+            if(obj.isShoot == 1 && temp2==1){
+                drawDisparoPlayer2(obj.posx);
+                console.log('entra a real time 2');
+
+            }
+            temp2 = 1;
             posx2 += obj.x;
 
         }
@@ -368,6 +389,8 @@ class Jugar extends Component {
         
         
         drawNave();
+        
+        
         
 
     });
