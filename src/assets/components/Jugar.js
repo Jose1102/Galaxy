@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import nave2 from '../images/nave2.png';
 import nave from '../images/nave.png';
 import fondoImagen from '../images/Captura2.PNG';
+import disparoImagen from '../images/shooRed.png';
+import disparoGreenImagen from '../images/shootGreen.png';
 
 import '../css/App.css';
 
@@ -12,8 +14,20 @@ var leftPressed = false;
 var rightPressedPlayer2 = false;
 var leftPressedPlayer2 = false;
 
+var sPressed = false;
+var flechaPressed = false;
+
 var posx = 120;
 var posx2 = 120;
+
+var disPlayer1 = 0;
+var disPlayer2 = 0;
+
+var existShoot = false;
+var existShootPlayer2 = false;
+
+var dy = 100;
+var dy2 = 500; 
 
 class Jugar extends Component {
     constructor(props) {
@@ -24,7 +38,8 @@ class Jugar extends Component {
 
         }
 
-      
+        
+        
 
         const canvasMapFondo = document.getElementById('fondo');
         const ctx2 = canvasMapFondo.getContext('2d');
@@ -85,6 +100,20 @@ class Jugar extends Component {
             );
         }
 
+
+        const canvasDisparo = document.getElementById('disparo');
+        const ctx3 = canvasDisparo.getContext('2d');
+        canvasDisparo.width = 900;
+        canvasDisparo.height = 540;
+
+        
+
+
+
+
+
+
+
         document.addEventListener("keydown", keyDownHandler, false);
         document.addEventListener("keyup", keyUpHandler, false);
 
@@ -94,15 +123,30 @@ class Jugar extends Component {
 
 
         function keyDownHandler(e) {
+            if(e.keyCode == 83 && sPressed==false){
+                disPlayer1= posx;
+                sPressed = true;
+                if(existShoot==false){
+
+                    drawDisparoPlayer1(disPlayer1);
+                    existShoot = true;
+
+                }         
+
+             }
             if(e.keyCode == 68 && posx < 820) {
-                
+                console.log('oprimió la tecla d');
                 rightPressed = true;
                 posx = posx + 10;
                 console.log('posx '+ posx);
                 wsreference.send(10,1);
                 drawNave();
+                
             }
+            
             else if(e.keyCode == 65 && posx > 0) {
+                
+                console.log('oprimió la tecla a');
                 leftPressed = true;
                 posx = posx - 10;
                 console.log('posx '+ posx);
@@ -110,6 +154,7 @@ class Jugar extends Component {
                 drawNave();
                 
             }
+            
         }
         
         function keyUpHandler(e) {
@@ -121,9 +166,25 @@ class Jugar extends Component {
                 leftPressed = false;
 
             }
+            else if(e.keyCode == 83) {
+                sPressed = false;
+
+            }
         }
 
         function keyDownHandlerPlayer2(e) {
+            if(e.keyCode == 38 && flechaPressed==false){
+                console.log('entra a flecha');
+                disPlayer2= posx2;
+                flechaPressed = true;
+                if(existShootPlayer2==false){
+
+                    drawDisparoPlayer2(disPlayer2);
+                    existShootPlayer2 = true;
+
+                }         
+
+             }
             if(e.keyCode == 39 && posx2 < 820) {
                 rightPressedPlayer2 = true;
                 posx2 = posx2 + 10;
@@ -148,6 +209,10 @@ class Jugar extends Component {
             }
             else if(e.keyCode == 37) {
                 leftPressedPlayer2 = false;
+
+            }
+            else if(e.keyCode == 38) {
+                flechaPressed = false;
 
             }
         }
@@ -188,6 +253,66 @@ class Jugar extends Component {
             
 
         }
+
+        function drawDisparoPlayer1(x){
+            ctx3.clearRect(0, 0, 900, 540);
+            
+            var disparoRed = new Image();
+            disparoRed.src = disparoImagen;
+    
+            ctx3.drawImage( disparoRed, x+10, dy,35,35 );
+            dy = dy +40;
+
+
+
+            
+
+            if(dy<540){
+                var a = setTimeout(drawDisparoPlayer1,200,x);
+
+            }else{
+                clearInterval(a);
+                ctx3.clearRect(0, 0, 900, 540);
+                dy = 20;
+                existShoot = false;
+
+            }
+            
+    
+            
+        }
+
+        function drawDisparoPlayer2(x){
+            var temp = dy2;
+            ctx3.clearRect(0, 0, 900, 540);
+            
+            var disparoJugador2 = new Image();
+            disparoJugador2.src = disparoGreenImagen;
+
+            disparoJugador2.onload = function(){
+                ctx3.drawImage( disparoJugador2,x+10, temp,35,35 );
+    
+            }
+    
+            dy2 = dy2 -40;
+
+
+           if(dy2>-10){
+                var a = setTimeout(drawDisparoPlayer2,200,x);
+
+            }else{
+                clearInterval(a);
+                ctx3.clearRect(0, 0, 900, 540);
+                dy2 = 500;
+                existShootPlayer2 = false;
+                
+
+            }
+            
+    
+            
+        }
+        
 
         function GalaxyServiceURL() {
             return 'wss://back-proyecto.herokuapp.com/galaxyGame';
