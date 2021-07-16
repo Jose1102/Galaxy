@@ -94,15 +94,18 @@ class Jugar extends Component {
 
 
         function keyDownHandler(e) {
-            if(e.keyCode == 68 && posx2 < 700) {
+            if(e.keyCode == 68 && posx < 820) {
+                
                 rightPressed = true;
                 posx = posx + 10;
+                console.log('posx '+ posx);
                 wsreference.send(10,1);
                 drawNave();
             }
-            else if(e.keyCode == 65 && posx2 > 0) {
+            else if(e.keyCode == 65 && posx > 0) {
                 leftPressed = true;
                 posx = posx - 10;
+                console.log('posx '+ posx);
                 wsreference.send(-10,1);
                 drawNave();
                 
@@ -121,15 +124,17 @@ class Jugar extends Component {
         }
 
         function keyDownHandlerPlayer2(e) {
-            if(e.keyCode == 39 && posx < 700) {
+            if(e.keyCode == 39 && posx2 < 820) {
                 rightPressedPlayer2 = true;
                 posx2 = posx2 + 10;
+                console.log('posx2 '+ posx2);
                 wsreference.send(10,2);
                 drawNave();
             }
-            else if(e.keyCode == 37 && posx > 0) {
+            else if(e.keyCode == 37 && posx2 > 0) {
                 leftPressedPlayer2 = true;
                 posx2 = posx2 - 10;
+                console.log('posx2 '+ posx2);
                 wsreference.send(-10,2);
                 drawNave();
                 
