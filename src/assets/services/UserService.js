@@ -8,12 +8,12 @@ const USERS_REST_API_URL_LOCAL = 'http://localhost:8080/galaxy/usuarios';
 class UserService{
 
     getUsers(){
-        return axios.get(USERS_REST_API_URL_LOCAL);
+        return axios.get(USERS_REST_API_URL);
 
     }
 
     addUser(user){
-        return axios.post(USERS_REST_API_URL_LOCAL,user);
+        return axios.post(USERS_REST_API_URL,user);
 
     }
 }

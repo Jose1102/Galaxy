@@ -910,9 +910,9 @@ class Jugar extends Component {
 
         function GalaxyServiceURL() {
             var host = window.location.host;
-	        var url = 'wss://' + (host) + '/bomberService';
+	        var url = 'wss://back-proyecto.herokuapp.com/galaxyGame';
 	        var url2 = 'ws://localhost:8080/galaxyGame';
-            return url2;
+            return url1;
         }
 
         class GalaxyGameChannel {
