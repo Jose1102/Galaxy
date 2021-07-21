@@ -912,7 +912,7 @@ class Jugar extends Component {
             var host = window.location.host;
 	        var url = 'wss://back-proyecto.herokuapp.com/galaxyGame';
 	        var url2 = 'ws://localhost:8080/galaxyGame';
-            return url1;
+            return url;
         }
 
         class GalaxyGameChannel {
