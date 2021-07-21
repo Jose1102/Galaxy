@@ -70,6 +70,15 @@ class Jugar extends Component {
 
         }
 
+        const canvasAliens = document.getElementById('aliens');
+        const ctx7 = canvasAliens.getContext('2d');
+        canvasAliens.width = 900;
+        canvasAliens.height = 540;
+
+        
+
+        alienDibujar();
+
         const canvasDisparo = document.getElementById('disparo');
         const ctx3 = canvasDisparo.getContext('2d');
         canvasDisparo.width = 900;
@@ -171,14 +180,7 @@ class Jugar extends Component {
         }
 
 
-        const canvasAliens = document.getElementById('aliens');
-        const ctx7 = canvasAliens.getContext('2d');
-        canvasAliens.width = 900;
-        canvasAliens.height = 540;
-
         
-
-        alienDibujar();
 
 
         
@@ -202,18 +204,47 @@ class Jugar extends Component {
             for(let z=0; z<6 ; z++){
                 
                 if(aliensArrayAmarillo[z]){
+                    alien.onload = function () {
+                        ctx7.drawImage(
+                            alien,
+                            x,
+                            220,
+                            50,
+                            50
+                        );
+                    }
                     
-                        ctx7.drawImage(alien, x, 220, 50, 50);
+                    //ctx7.drawImage(alien, x, 220, 50, 50);
                         
                     
                 }
                 if(aliensArrayAzul[z]){
-                    ctx7.drawImage(alienYellow,x,265,50,50);
+                    alienYellow.onload = function () {
+                        ctx7.drawImage(
+                            alienYellow,
+                            x,
+                            265,
+                            50,
+                            50
+                        );
+                    }
+                    
+                    //ctx7.drawImage(alienYellow,x,265,50,50);
 
                 }
 
                 if(aliensArrayRojo[z]){
-                    ctx7.drawImage(alienRed,x,180,50,50);
+
+                    alienRed.onload = function () {
+                        ctx7.drawImage(
+                            alienRed,
+                            x,
+                            180,
+                            50,
+                            50
+                        );
+                    }
+                    //ctx7.drawImage(alienRed,x,180,50,50);
 
                 }
                 x = x+60;
