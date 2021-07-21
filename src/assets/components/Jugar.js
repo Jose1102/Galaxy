@@ -70,6 +70,15 @@ class Jugar extends Component {
 
         }
 
+        const canvasDisparo = document.getElementById('disparo');
+        const ctx3 = canvasDisparo.getContext('2d');
+        canvasDisparo.width = 900;
+        canvasDisparo.height = 540;
+
+
+        
+
+
         const canvasNumeros = document.getElementById('numeros');
         const ctx5 = canvasNumeros.getContext('2d');
         canvasNumeros.width = 900;
@@ -162,12 +171,6 @@ class Jugar extends Component {
         }
 
 
-        const canvasDisparo = document.getElementById('disparo');
-        const ctx3 = canvasDisparo.getContext('2d');
-        canvasDisparo.width = 900;
-        canvasDisparo.height = 540;
-
-
         const canvasAliens = document.getElementById('aliens');
         const ctx7 = canvasAliens.getContext('2d');
         canvasAliens.width = 900;
@@ -175,10 +178,13 @@ class Jugar extends Component {
 
         
 
-        alienDibujar(aliensArrayAmarillo,aliensArrayAzul,aliensArrayRojo);
+        alienDibujar();
+
+
+        
        
 
-        function alienDibujar(isLive,isLive2,isLive3){
+        function alienDibujar(){
             
             var alien = new Image();
             alien.src = alien1;
@@ -195,18 +201,18 @@ class Jugar extends Component {
 
             for(let z=0; z<6 ; z++){
                 
-                if(isLive[z]){
+                if(aliensArrayAmarillo[z]){
                     
                         ctx7.drawImage(alien, x, 220, 50, 50);
                         
                     
                 }
-                if(isLive2[z]){
+                if(aliensArrayAzul[z]){
                     ctx7.drawImage(alienYellow,x,265,50,50);
 
                 }
 
-                if(isLive3[z]){
+                if(aliensArrayRojo[z]){
                     ctx7.drawImage(alienRed,x,180,50,50);
 
                 }
@@ -803,7 +809,7 @@ class Jugar extends Component {
                     var puntaje2 = new Image();
                     puntaje2.src = numero7;
 
-                    puntaje2.onload = function () {
+                    
                         ctx6.drawImage(
                             puntaje2,
                             845,
@@ -811,7 +817,7 @@ class Jugar extends Component {
                             60,
                             40
                         );
-                    }
+                    
                     
             
                
@@ -826,7 +832,7 @@ class Jugar extends Component {
                     var puntaje2 = new Image();
                     puntaje2.src = numero8;
 
-                    puntaje2.onload = function () {
+                    
                         ctx6.drawImage(
                             puntaje2,
                             845,
@@ -834,7 +840,7 @@ class Jugar extends Component {
                             60,
                             40
                         );
-                    }
+                    
                     
             
                
@@ -849,7 +855,7 @@ class Jugar extends Component {
                     var puntaje2 = new Image();
                     puntaje2.src = numero9;
 
-                    puntaje2.onload = function () {
+                   
                         ctx6.drawImage(
                             puntaje2,
                             845,
@@ -857,7 +863,7 @@ class Jugar extends Component {
                             60,
                             40
                         );
-                    }
+                            
                     
             
                
@@ -909,7 +915,6 @@ class Jugar extends Component {
         
 
         function GalaxyServiceURL() {
-            var host = window.location.host;
 	        var url = 'wss://back-proyecto.herokuapp.com/galaxyGame';
 	        var url2 = 'ws://localhost:8080/galaxyGame';
             return url;
