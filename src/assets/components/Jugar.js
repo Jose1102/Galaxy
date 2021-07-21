@@ -61,7 +61,9 @@ var aliensArrayAzul = [true,true,true,true,true] ;
 var aliensArrayRojo = [true,true,true,true,true] ;
 var posiciones = [110,170,230,290,350];
 
-//var x = 110;
+var posicionAlienAmarillo = 0;
+
+var constante = 0;
 
 
 
@@ -73,15 +75,38 @@ class Jugar extends Component {
         this.state = {
 
         }
-
+        var tt = 2000;
+        var yy = 0;
         const canvasAliens = document.getElementById('aliens');
         const ctx7 = canvasAliens.getContext('2d');
         canvasAliens.width = 900;
         canvasAliens.height = 540;
 
+        for(let c=0; c<100;c++){
+            for(let y=0; y<6; y++){
+                constante = y;
+                setTimeout(alienDibujar,tt,yy);
+                tt = tt + 2000;
+                yy = yy +30;
+    
+    
+            }
+    
+            for(let y=0; y<6; y++){
+                
+                setTimeout(alienDibujar,tt,yy);
+                tt = tt + 2000;
+                yy = yy -30;
+    
+    
+            }
+
+        }
         
 
-        alienDibujar();
+        
+       // setTimeout(alienDibujar,2000,0);
+        //setTimeout(alienDibujar,4000,30);
 
         const canvasDisparo = document.getElementById('disparo');
         const ctx3 = canvasDisparo.getContext('2d');
@@ -190,9 +215,11 @@ class Jugar extends Component {
         
        
 
-        function alienDibujar(){
+        function alienDibujar(variable){
                       
            // var x = 110;
+           ctx7.clearRect(0, 0, 900, 540);
+           
            
            
 
@@ -213,11 +240,13 @@ class Jugar extends Component {
                     alienA1.onload = function () {
                         ctx7.drawImage(
                             alienA1,
-                            posiciones[z],
+                            posiciones[z]+variable,
                             220,
                             50,
                             50
                         );
+                        posicionAlienAmarillo = posiciones[z]+variable;
+                        //console.log('valor de po : '+posicionAlienAmarillo);
                     }
                     
                     
@@ -229,7 +258,7 @@ class Jugar extends Component {
                     alienYellow.onload = function () {
                         ctx7.drawImage(
                             alienYellow,
-                            posiciones[z],
+                            posiciones[z]+variable,
                             265,
                             50,
                             50
@@ -245,7 +274,7 @@ class Jugar extends Component {
                     alienRed.onload = function () {
                         ctx7.drawImage(
                             alienRed,
-                            posiciones[z],
+                            posiciones[z]+variable,
                             180,
                             50,
                             50
@@ -264,7 +293,7 @@ class Jugar extends Component {
 
         }
 
-
+        
 
 
        
@@ -420,8 +449,18 @@ class Jugar extends Component {
     
             ctx3.drawImage( disparoRed, x+10, dy,35,35 );
             dy = dy +40;
-        
+            console.log('dy : '+ dy);
+            
+            for(let d = 0; d<6;d++){
+                let pos = posiciones[d]+constante*30;
+                console.log('pos : '+ pos);
+                console.log('posicion bala : '+ x);
+                if(pos==x && dy==220){
+                    console.log('entra a colison con alien amarillo');
+    
+                }
 
+            }
             
 
             
@@ -445,6 +484,10 @@ class Jugar extends Component {
                             40
                         );
                     }
+
+                    
+
+                    
                     
             
                
@@ -654,6 +697,7 @@ class Jugar extends Component {
                         );
                     }
                     
+                    window.alert("Ganó el jugador 1");
             
                
 
@@ -927,7 +971,7 @@ class Jugar extends Component {
                         );
                     }
                     
-            
+                    window.alert("Ganó el jugador 2");
                
 
 
