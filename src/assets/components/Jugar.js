@@ -59,6 +59,10 @@ var puntajePlayer2 = 0;
 var aliensArrayAmarillo = [true,true,true,true,true] ;
 var aliensArrayAzul = [true,true,true,true,true] ;
 var aliensArrayRojo = [true,true,true,true,true] ;
+var posiciones = [110,170,230,290,350];
+
+//var x = 110;
+
 
 
 class Jugar extends Component {
@@ -187,32 +191,35 @@ class Jugar extends Component {
        
 
         function alienDibujar(){
-            
-            var alien = new Image();
-            alien.src = alien1;
-            let x = 110;
-
-
-            var alienYellow = new Image();
-            alienYellow.src = alien2;
-
-            var alienRed = new Image();
-            alienRed.src = alien3;
-            
+                      
+           // var x = 110;
+           
+           
 
 
             for(let z=0; z<6 ; z++){
+                var alienA1 = new Image();
+                alienA1.src = alien1;
+
+
+    
+                var alienYellow = new Image();
+                alienYellow.src = alien2;
+    
+                var alienRed = new Image();
+                alienRed.src = alien3;
                 
                 if(aliensArrayAmarillo[z]){
-                    alien.onload = function () {
+                    alienA1.onload = function () {
                         ctx7.drawImage(
-                            alien,
-                            x,
+                            alienA1,
+                            posiciones[z],
                             220,
                             50,
                             50
                         );
                     }
+                    
                     
                     //ctx7.drawImage(alien, x, 220, 50, 50);
                         
@@ -222,7 +229,7 @@ class Jugar extends Component {
                     alienYellow.onload = function () {
                         ctx7.drawImage(
                             alienYellow,
-                            x,
+                            posiciones[z],
                             265,
                             50,
                             50
@@ -238,7 +245,7 @@ class Jugar extends Component {
                     alienRed.onload = function () {
                         ctx7.drawImage(
                             alienRed,
-                            x,
+                            posiciones[z],
                             180,
                             50,
                             50
@@ -247,11 +254,12 @@ class Jugar extends Component {
                     //ctx7.drawImage(alienRed,x,180,50,50);
 
                 }
-                x = x+60;
                 
+            
 
 
             }
+            
 
 
         }
