@@ -4,6 +4,27 @@ import nave from '../images/nave.png';
 import fondoImagen from '../images/Captura2.PNG';
 import disparoImagen from '../images/shooRed.png';
 import disparoGreenImagen from '../images/shootGreen.png';
+import tablero from '../images/score.png';
+
+import numero1 from '../images/numero1.png';
+import numero2 from '../images/numero2.png';
+import numero3 from '../images/numero3.png';
+import numero4 from '../images/numero4.png';
+import numero5 from '../images/numero5.png';
+import numero6 from '../images/numero6.png';
+import numero7 from '../images/numero7.png';
+import numero8 from '../images/numero8.png';
+import numero9 from '../images/numero9.png';
+import numero10 from '../images/numero10.png';
+
+import alien1 from '../images/alienAmarillo.png';
+import alien2 from '../images/alienAzul.png';
+import alien3 from '../images/alienRojo.png';
+
+
+
+
+
 
 import '../css/App.css';
 
@@ -32,6 +53,13 @@ var dy2 = 500;
 var temp1 = 0;
 var temp2 = 0;
 
+var puntajePlayer1 = 0;
+var puntajePlayer2 = 0;
+
+var aliensArrayAmarillo = [true,true,true,true,true] ;
+var aliensArrayAzul = [true,true,true,true,true] ;
+var aliensArrayRojo = [true,true,true,true,true] ;
+
 
 class Jugar extends Component {
     constructor(props) {
@@ -42,7 +70,15 @@ class Jugar extends Component {
 
         }
 
-        
+        const canvasNumeros = document.getElementById('numeros');
+        const ctx5 = canvasNumeros.getContext('2d');
+        canvasNumeros.width = 900;
+        canvasNumeros.height = 540;
+
+        const canvasNumeros2 = document.getElementById('numeros2');
+        const ctx6 = canvasNumeros2.getContext('2d');
+        canvasNumeros2.width = 900;
+        canvasNumeros2.height = 540;
         
 
         const canvasMapFondo = document.getElementById('fondo');
@@ -70,6 +106,27 @@ class Jugar extends Component {
         const ctx1 = canvasMap.getContext('2d');
         canvasMap.width = 900;
         canvasMap.height = 540;
+
+        const canvasScore = document.getElementById('score');
+        const ctx4 = canvasScore.getContext('2d');
+        canvasScore.width = 900;
+        canvasScore.height = 540;
+
+        var scoreBoard = new Image();
+        scoreBoard.src = tablero;
+
+        scoreBoard.onload = function(){
+            ctx4.drawImage(
+                scoreBoard,
+                820,
+                220,
+                80,
+                80
+
+
+            );
+
+        }
 
 
        
@@ -110,6 +167,63 @@ class Jugar extends Component {
         canvasDisparo.width = 900;
         canvasDisparo.height = 540;
 
+
+        const canvasAliens = document.getElementById('aliens');
+        const ctx7 = canvasAliens.getContext('2d');
+        canvasAliens.width = 900;
+        canvasAliens.height = 540;
+
+        
+
+        alienDibujar(aliensArrayAmarillo,aliensArrayAzul,aliensArrayRojo);
+       
+
+        function alienDibujar(isLive,isLive2,isLive3){
+            
+            var alien = new Image();
+            alien.src = alien1;
+            let x = 110;
+
+
+            var alienYellow = new Image();
+            alienYellow.src = alien2;
+
+            var alienRed = new Image();
+            alienRed.src = alien3;
+            
+
+
+            for(let z=0; z<6 ; z++){
+                
+                if(isLive[z]){
+                    
+                        ctx7.drawImage(alien, x, 220, 50, 50);
+                        
+                    
+                }
+                if(isLive2[z]){
+                    ctx7.drawImage(alienYellow,x,265,50,50);
+
+                }
+
+                if(isLive3[z]){
+                    ctx7.drawImage(alienRed,x,180,50,50);
+
+                }
+                x = x+60;
+                
+
+
+            }
+
+
+        }
+
+
+
+
+       
+
         
 
 
@@ -131,7 +245,6 @@ class Jugar extends Component {
                 disPlayer1= posx;
                 sPressed = true;
                 if(existShoot==false ){
-                    console.log('entra a player 1 send');
                     drawDisparoPlayer1(disPlayer1);
                     existShoot = true;
                     wsreference.send(10,1,posx,1);
@@ -141,10 +254,8 @@ class Jugar extends Component {
 
              }
             if(e.keyCode == 68 && posx < 820) {
-                console.log('oprimió la tecla d');
                 rightPressed = true;
                 posx = posx + 10;
-                console.log('posx '+ posx);
                 wsreference.send(10,1,posx,0);
                 drawNave();
                 
@@ -152,10 +263,8 @@ class Jugar extends Component {
             
             else if(e.keyCode == 65 && posx > 0) {
                 
-                console.log('oprimió la tecla a');
                 leftPressed = true;
                 posx = posx - 10;
-                console.log('posx '+ posx);
                 wsreference.send(-10,1,posx,0);
                 drawNave();
                 
@@ -180,11 +289,9 @@ class Jugar extends Component {
 
         function keyDownHandlerPlayer2(e) {
             if(e.keyCode == 38 && flechaPressed==false){
-                console.log('entra a flecha');
                 disPlayer2= posx2;
                 flechaPressed = true;
                 if(existShootPlayer2==false ){
-                    console.log('entra a player 2 send');
                     drawDisparoPlayer2(disPlayer2);
                     existShootPlayer2 = true;
                     wsreference.send(10,2,posx2,1);
@@ -196,14 +303,12 @@ class Jugar extends Component {
             if(e.keyCode == 39 && posx2 < 820) {
                 rightPressedPlayer2 = true;
                 posx2 = posx2 + 10;
-                console.log('posx2 '+ posx2);
                 wsreference.send(10,2,posx2,0);
                 drawNave();
             }
             else if(e.keyCode == 37 && posx2 > 0) {
                 leftPressedPlayer2 = true;
                 posx2 = posx2 - 10;
-                console.log('posx2 '+ posx2);
                 wsreference.send(-10,2,posx2,0);
                 drawNave();
                 
@@ -270,15 +375,253 @@ class Jugar extends Component {
     
             ctx3.drawImage( disparoRed, x+10, dy,35,35 );
             dy = dy +40;
-
-
+        
 
             
 
-            if(dy<540){
+            
+            if(dy==500 && x >= posx2 && x<=(posx2+60) ){
+                console.log('hace colisión');
+                puntajePlayer1++;
+
+                if(puntajePlayer1==1){
+                    console.log('entra a pintar el numero1');
+                    ctx5.clearRect(0, 0, 900, 540);
+            
+                    var puntaje1 = new Image();
+                    puntaje1.src = numero1;
+
+                    puntaje1.onload = function () {
+                        ctx5.drawImage(
+                            puntaje1,
+                            815,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer1==2){
+                    console.log('entra a pintar el numero1');
+                    ctx5.clearRect(0, 0, 900, 540);
+            
+                    var puntaje1 = new Image();
+                    puntaje1.src = numero2;
+
+                    puntaje1.onload = function () {
+                        ctx5.drawImage(
+                            puntaje1,
+                            815,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer1==3){
+                    console.log('entra a pintar el numero1');
+                    ctx5.clearRect(0, 0, 900, 540);
+            
+                    var puntaje1 = new Image();
+                    puntaje1.src = numero3;
+
+                    puntaje1.onload = function () {
+                        ctx5.drawImage(
+                            puntaje1,
+                            815,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer1==4){
+                    console.log('entra a pintar el numero1');
+                    ctx5.clearRect(0, 0, 900, 540);
+            
+                    var puntaje1 = new Image();
+                    puntaje1.src = numero4;
+
+                    puntaje1.onload = function () {
+                        ctx5.drawImage(
+                            puntaje1,
+                            815,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+
+                if(puntajePlayer1==5){
+                    console.log('entra a pintar el numero1');
+                    ctx5.clearRect(0, 0, 900, 540);
+            
+                    var puntaje1 = new Image();
+                    puntaje1.src = numero5;
+
+                    puntaje1.onload = function () {
+                        ctx5.drawImage(
+                            puntaje1,
+                            815,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer1==6){
+                    console.log('entra a pintar el numero1');
+                    ctx5.clearRect(0, 0, 900, 540);
+            
+                    var puntaje1 = new Image();
+                    puntaje1.src = numero6;
+
+                    puntaje1.onload = function () {
+                        ctx5.drawImage(
+                            puntaje1,
+                            815,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer1==7){
+                    console.log('entra a pintar el numero1');
+                    ctx5.clearRect(0, 0, 900, 540);
+            
+                    var puntaje1 = new Image();
+                    puntaje1.src = numero7;
+
+                    puntaje1.onload = function () {
+                        ctx5.drawImage(
+                            puntaje1,
+                            815,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer1==8){
+                    console.log('entra a pintar el numero1');
+                    ctx5.clearRect(0, 0, 900, 540);
+            
+                    var puntaje1 = new Image();
+                    puntaje1.src = numero8;
+
+                    puntaje1.onload = function () {
+                        ctx5.drawImage(
+                            puntaje1,
+                            815,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer1==9){
+                    console.log('entra a pintar el numero1');
+                    ctx5.clearRect(0, 0, 900, 540);
+            
+                    var puntaje1 = new Image();
+                    puntaje1.src = numero9;
+
+                    puntaje1.onload = function () {
+                        ctx5.drawImage(
+                            puntaje1,
+                            815,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer1==10){
+                    console.log('entra a pintar el numero1');
+                    ctx5.clearRect(0, 0, 900, 540);
+            
+                    var puntaje1 = new Image();
+                    puntaje1.src = numero10;
+
+                    puntaje1.onload = function () {
+                        ctx5.drawImage(
+                            puntaje1,
+                            825,
+                            242,
+                            40,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+
+            }
+            if(dy<500 ){
                 var a = setTimeout(drawDisparoPlayer1,200,x);
 
-            }else{
+            }
+            else{
                 clearInterval(a);
                 ctx3.clearRect(0, 0, 900, 540);
                 dy = 20;
@@ -286,6 +629,8 @@ class Jugar extends Component {
                 temp1 =0;
 
             }
+            
+            
             
     
             
@@ -298,18 +643,258 @@ class Jugar extends Component {
             var disparoJugador2 = new Image();
             disparoJugador2.src = disparoGreenImagen;
 
-            disparoJugador2.onload = function(){
-                ctx3.drawImage( disparoJugador2,x+10, temp,35,35 );
+            ctx3.drawImage( disparoJugador2,x+10, temp,35,35 );
     
+            
+    
+            dy2 = dy2 - 40;
+
+            let as = posx+60
+           
+            
+            
+            if(dy2>=-10 && dy2<= 50 && x >= posx && x<=(posx+60) ){
+                console.log('hace colisión');
+                puntajePlayer2++;
+
+                if(puntajePlayer2==1){
+                    console.log('entra a pintar el numero1');
+                    ctx6.clearRect(0, 0, 900, 540);
+            
+                    var puntaje2 = new Image();
+                    puntaje2.src = numero1;
+
+                    puntaje2.onload = function () {
+                        ctx6.drawImage(
+                            puntaje2,
+                            845,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer2==2){
+                    console.log('entra a pintar el numero1');
+                    ctx6.clearRect(0, 0, 900, 540);
+            
+                    var puntaje2 = new Image();
+                    puntaje2.src = numero2;
+
+                    puntaje2.onload = function () {
+                        ctx6.drawImage(
+                            puntaje2,
+                            845,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer2==3){
+                    console.log('entra a pintar el numero1');
+                    ctx6.clearRect(0, 0, 900, 540);
+            
+                    var puntaje2 = new Image();
+                    puntaje2.src = numero3;
+
+                    puntaje2.onload = function () {
+                        ctx6.drawImage(
+                            puntaje2,
+                            845,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer2==4){
+                    console.log('entra a pintar el numero1');
+                    ctx6.clearRect(0, 0, 900, 540);
+            
+                    var puntaje2 = new Image();
+                    puntaje2.src = numero4;
+
+                    puntaje2.onload = function () {
+                        ctx6.drawImage(
+                            puntaje2,
+                            845,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+
+                if(puntajePlayer2==5){
+                    console.log('entra a pintar el numero1');
+                    ctx6.clearRect(0, 0, 900, 540);
+            
+                    var puntaje2 = new Image();
+                    puntaje2.src = numero5;
+
+                    puntaje2.onload = function () {
+                        ctx6.drawImage(
+                            puntaje2,
+                            845,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer2==6){
+                    console.log('entra a pintar el numero1');
+                    ctx6.clearRect(0, 0, 900, 540);
+            
+                    var puntaje2 = new Image();
+                    puntaje2.src = numero6;
+
+                    puntaje2.onload = function () {
+                        ctx6.drawImage(
+                            puntaje2,
+                            845,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer2==7){
+                    console.log('entra a pintar el numero1');
+                    ctx6.clearRect(0, 0, 900, 540);
+            
+                    var puntaje2 = new Image();
+                    puntaje2.src = numero7;
+
+                    puntaje2.onload = function () {
+                        ctx6.drawImage(
+                            puntaje2,
+                            845,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer2==8){
+                    console.log('entra a pintar el numero1');
+                    ctx6.clearRect(0, 0, 900, 540);
+            
+                    var puntaje2 = new Image();
+                    puntaje2.src = numero8;
+
+                    puntaje2.onload = function () {
+                        ctx6.drawImage(
+                            puntaje2,
+                            845,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer2==9){
+                    console.log('entra a pintar el numero1');
+                    ctx6.clearRect(0, 0, 900, 540);
+            
+                    var puntaje2 = new Image();
+                    puntaje2.src = numero9;
+
+                    puntaje2.onload = function () {
+                        ctx6.drawImage(
+                            puntaje2,
+                            845,
+                            242,
+                            60,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
+
+                if(puntajePlayer2==10){
+                    console.log('entra a pintar el numero1');
+                    ctx6.clearRect(0, 0, 900, 540);
+            
+                    var puntaje2 = new Image();
+                    puntaje2.src = numero10;
+
+                    puntaje2.onload = function () {
+                        ctx6.drawImage(
+                            puntaje2,
+                            850,
+                            242,
+                            50,
+                            40
+                        );
+                    }
+                    
+            
+               
+
+
+                }
             }
-    
-            dy2 = dy2 -40;
 
-
-           if(dy2>-10){
+           if(dy2>5){
                 var a = setTimeout(drawDisparoPlayer2,200,x);
 
-            }else{
+            }
+            else{
+                console.log('entra al else');
                 clearInterval(a);
                 ctx3.clearRect(0, 0, 900, 540);
                 dy2 = 500;
@@ -324,7 +909,10 @@ class Jugar extends Component {
         
 
         function GalaxyServiceURL() {
-            return 'wss://back-proyecto.herokuapp.com/galaxyGame';
+            var host = window.location.host;
+	        var url = 'wss://' + (host) + '/bomberService';
+	        var url2 = 'ws://localhost:8080/galaxyGame';
+            return url2;
         }
 
         class GalaxyGameChannel {

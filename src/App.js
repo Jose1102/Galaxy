@@ -13,7 +13,6 @@ import Inicio from './assets/components/Inicio';
 import Jugar from './assets/components/Jugar';
 
 
-
 function App() {
   return (
 
@@ -33,7 +32,6 @@ function App() {
                           
                     </Switch>
                 </div>
-              
         </Router>
     </div>
 
