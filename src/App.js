@@ -22,11 +22,12 @@ function App() {
                 <div className="container">
                     <Switch> 
                           <Route path = "/" exact component = {UserComponet}></Route>
+                          <Route path = "/jugar" exact component = {Jugar}></Route>
                           <Route path = "/usuarios" component = {UserComponet}></Route>
                           <Route path = "/agregarJugador" exact component = {CreateUser}></Route>
                           <Route path = "/iniciarSesion" exact component = {LoginUser}></Route>
                           <Route path = "/inicio" exact component = {Inicio}></Route>
-                          <Route path = "/jugar" exact component = {Jugar}></Route>
+                          
                           
                           
                           

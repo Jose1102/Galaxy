@@ -75,6 +75,7 @@ class Jugar extends Component {
         this.state = {
 
         }
+
         var tt = 2000;
         var yy = 0;
         const canvasAliens = document.getElementById('aliens');
@@ -1065,6 +1066,8 @@ class Jugar extends Component {
         
         
         drawNave();
+        ctx1.clearRect(0, 0, 900, 540);
+    
         
         
         
@@ -1076,11 +1079,17 @@ class Jugar extends Component {
        
   }
 
+  
+
     
 
     render() {
         return (
-          <div></div>
+            <div>
+
+                
+
+            </div>
         );
     }
 }
