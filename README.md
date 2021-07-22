@@ -55,5 +55,28 @@ Finalmente, lo que yo busco es poder traer devuelta este juego de combate espaci
 ![Galaxy](https://github.com/Jose1102/Classic-Galaxy-Game-/blob/main/images/Galaxy.PNG)
 
 
+## Inicio a base de datos
+
+
+![Team](https://github.com/Jose1102/Galaxy/blob/master/src/assets/images/Captura1.PNG)
+
+
+## Agregar nuevo jugador
+
+![agregar](https://github.com/Jose1102/Galaxy/blob/master/src/assets/images/Captura3.PNG)
+
+## Menú principal
+
+![jugar](https://github.com/Jose1102/Galaxy/blob/master/src/assets/images/Captura4.PNG)
+
+## Juego
+
+![juego](https://github.com/Jose1102/Galaxy/blob/master/src/assets/images/Captura5.PNG)
+
+
+
+
+
+
 
 
