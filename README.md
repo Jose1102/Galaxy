@@ -1,3 +1,10 @@
+# Team-Galaxy-Game  
+
+<img src="https://media.giphy.com/media/xT4ApnyPkEjNb5QLWE/giphy.gif" width="120" height="120" />
+
+## Autores ✒️
+
+* **Jose María Castro Ortega** - *Estudiante de ingeniería de sistemas* - [Jose1102](https://github.com/Jose1102)
 
 ## Despliegue Heroku Back
 
@@ -9,73 +16,43 @@
 
 [![Heroku](https://www.herokucdn.com/deploy/button.png)](https://front-api-space.herokuapp.com/)
 
-# Getting Started with Create React App
+# ¿ Cómo jugar ?
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Para el player 1 la nave espacial se podrá mover a la derecha con la tecla d, para moverse a la izquierda se podrá mover con la tecla a.
+![asda](https://github.com/Jose1102/Galaxy/blob/master/src/assets/images/nave2.png)
 
-## Available Scripts
+Para el player 2 la nave espacial se podrá mover a la derecha con la flecha dereha, para moverserse a la izquierda se podrá mover con la flecha izquierda
 
-In the project directory, you can run:
+![adsa](https://github.com/Jose1102/Galaxy/blob/master/src/assets/images/nave.png)
 
-### `npm start`
+Para poder disparar el player 1 deberá oprimir la tecla s.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img height="32px" src="https://github.com/Jose1102/Galaxy/blob/master/src/assets/images/shooRed.png">
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Para poder disparar el player 2 deberá oprimir la flecha arriba
 
-### `npm test`
+<img height="32px" src="https://github.com/Jose1102/Galaxy/blob/master/src/assets/images/shootGreen.png">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Resumen 📖
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Es un video juego que está basado en el video juego [SpaceWar!](https://es.wikipedia.org/wiki/Spacewar!). El objetivo es que este juego pueda jugarse modo multijugador, donde cada nave estará en un extremo de la pantalla, queriendo destruir la nave del otro jugador, para ello cada nave deberá destruir los ovnis que están en media de las dos naves. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Descripción 📋
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Este juego está diseñado para aquellas personas que le gusta los video juegos clásicos. Quiero recopilar el video juego [SpaceWar!](https://es.wikipedia.org/wiki/Spacewar!) que se jugaba con un monitor CRT y ofrecía a los jugadores una batalla de naves espaciales. Cuya primera versión se terminó en febrero de 1962, este no era un juego simple. Se apoyaba en la trigonometría para realizar los cálculos de las trayectorias de las dos naves que se enfrentaban en la batalla.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Team](https://github.com/Jose1102/Classic-Galaxy-Game-/blob/main/images/teamGalaxy.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+El juego se hizo extremadamente popular dentro y fuera del MIT, generó una comunidad de desarrolladores que mejoraban el juego añadiendo nuevas características: eliminar el fondo estrellado y/o incluir un "viento espacial".
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Finalmente, lo que yo busco es poder traer devuelta este juego de combate espacial que años atrás se inventó y poder agregarle mi valor agregado para así poderlo jugar de modo multijugador en tiempo real, como se puede ver a continuación.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Galaxy](https://github.com/Jose1102/Classic-Galaxy-Game-/blob/main/images/Galaxy.PNG)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
