@@ -19,6 +19,7 @@
 # ¿ Cómo jugar ?
 
 Para el player 1 la nave espacial se podrá mover a la derecha con la tecla d, para moverse a la izquierda se podrá mover con la tecla a.
+
 ![asda](https://github.com/Jose1102/Galaxy/blob/master/src/assets/images/nave2.png)
 
 Para el player 2 la nave espacial se podrá mover a la derecha con la flecha dereha, para moverserse a la izquierda se podrá mover con la flecha izquierda
